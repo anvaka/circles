@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge' >
+  <meta charset="utf-8">
+  <title>Simple spirograph toy</title>
+  <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+  <meta name="Description" content="This is a simple demo of spirograph implemented with javscript">
+  <meta name="keywords" content="spirograph, demo, toy" />
+  <meta name="author" content="Andrei Kashcha">
+<style type="text/css" media="screen">
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background-color: #2A231E;
+    text-align: center;
+    margin-top: 8px;
+  }
+  #btn-randomize {
+    display: block;
+  }
+  a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-family: sans-serif;
+  }
+  .pause-monitor {
+    pointer-events: none;
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    margin-left: -24px;
+    margin-top: -24px;
+    left: 50%;
+    top: 50%;
+    border-radius: 24px;
+    background-color: rgba(0, 0, 0, 0.00);
+    transition: transform, background-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pause-monitor svg {
+    fill: rgba(255, 255, 255, 0.0);
+    width: 12px;
+    height: 12px;
+  }
+  .playing {animation: 560ms pulse-play;}
+  .playing svg { animation: 560ms fade-svg; }
+  svg { display: none; }
+  svg.active { display: block;}
+
+@keyframes fade-svg {
+  0% {
+    fill: rgba(255, 255, 255, 1.0);
+  }
+  88% {
+    fill: rgba(255, 255, 255, 0.7);
+  }
+  100% {
+    fill: rgba(255, 255, 255, 0.0);
+  }
+}
+@keyframes pulse-play {
+  0% {
+    background-color: rgba(0, 0, 0, 0.75);
+    transform: scale(1.0);
+  }
+  88% {
+    transform: scale(1.65);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.00);
+    transform: scale(1.7);
+  }
+}
+  </style>
+</head>
+<body>
+  <a href="#" id='btn-randomize'>Randomize</a>
+  <canvas id=scene></canvas>
+  <a href="https://github.com/anvaka/circles">source code</a>
+  <div class='pause-monitor'>
+    <svg class='paused' version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 12 14"><path d="M12 1.5v11q0 0.203-0.148 0.352t-0.352 0.148h-4q-0.203 0-0.352-0.148t-0.148-0.352v-11q0-0.203 0.148-0.352t0.352-0.148h4q0.203 0 0.352 0.148t0.148 0.352zM5 1.5v11q0 0.203-0.148 0.352t-0.352 0.148h-4q-0.203 0-0.352-0.148t-0.148-0.352v-11q0-0.203 0.148-0.352t0.352-0.148h4q0.203 0 0.352 0.148t0.148 0.352z"></path></svg>
+    <svg class='not-paused resume' version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 12 14"><path d="M10.812 7.242l-10.375 5.766q-0.18 0.102-0.309 0.023t-0.129-0.281v-11.5q0-0.203 0.129-0.281t0.309 0.023l10.375 5.766q0.18 0.102 0.18 0.242t-0.18 0.242z"></path></svg>
+  </div>
+  <script src='https://cdn.rawgit.com/anvaka/query-state/v4.1.0/dist/query-state.min.js'></script>
+  <script src="index.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-47259320-1', 'anvaka.github.io');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
