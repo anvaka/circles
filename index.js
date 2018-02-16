@@ -124,13 +124,6 @@ function circle(cx, cy, radius, color) {
   ctx.stroke();
 }
 
-function spiralFinished(sx, sy, x, y) {
-  if (sx === undefined) return false;
-  var dx = x - sx;
-  var dy = y - sy;
-  return Math.sqrt(dx * dx + dy * dy) < 0.0001;
-}
-
 function line(x1, y1, x2, y2, color) {
   ctx.beginPath();
   ctx.strokeStyle = color;
@@ -216,11 +209,6 @@ function randomSpiral() {
     holeRadius: Math.random() * 0.8+ 0.2,
     initialAngle: Math.random() * 2 * Math.PI 
   }
-  // var children = [];
-  // if (Math.random() < 0.55) {
-  //   children.push(randomSpiral())
-  // }
-  // spiral.children = children;
   return spiral
 }
 
