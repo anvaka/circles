@@ -37,13 +37,14 @@ var drawCircles = false;
 
 // How fast should we move with each frame.
 var alphaStep = Math.PI/30;
-if (drawCircles) alphaStep *= 0.01;
+//if (drawCircles) alphaStep *= 0.01;
 
 var scene = document.getElementById('scene');
 var width = scene.width = Math.min(480, window.innerWidth);
 var height = scene.height = Math.min(480, width);
 
 var ctx = scene.getContext('2d');
+ctx.lineWidth = window.devicePixelRatio;
 var isPlaying = true;
 
 document.getElementById('btn-randomize').addEventListener('click', randomize);
@@ -81,7 +82,12 @@ function drawSpiral(spiral, cx, cy, alpha, parentR) {
       circle(cx, cy, radius, spiral.color || '#550000');
       line(cx, cy, x1, y1, spiral.color || '#550000');
     }
-    if (spiral.ppx !== undefined) {
+
+    if (spiral.ppx === undefined) {
+      // this is our first point. Could be used to check when to stop
+      spiral.startX = x1;
+      spiral.startY = y1;
+    } else {
       line(spiral.ppx, spiral.ppy, x1, y1, spiral.color || '#003399');
     }
     spiral.ppx = x1;
@@ -116,6 +122,13 @@ function circle(cx, cy, radius, color) {
           0, 
           2*Math.PI);
   ctx.stroke();
+}
+
+function spiralFinished(sx, sy, x, y) {
+  if (sx === undefined) return false;
+  var dx = x - sx;
+  var dy = y - sy;
+  return Math.sqrt(dx * dx + dy * dy) < 0.0001;
 }
 
 function line(x1, y1, x2, y2, color) {
@@ -199,15 +212,15 @@ function randomize(e){
 function randomSpiral() {
   var spiral = {
     color: Math.random() < 0.5 ? '#B8AD83' : 'white',
-    radiusRatio: Math.random() * 0.9 + 0.1,
+    radiusRatio: (Math.round(Math.random() * 42)/42),
     holeRadius: Math.random() * 0.8+ 0.2,
     initialAngle: Math.random() * 2 * Math.PI 
   }
-  var children = [];
-  if (Math.random() < 0.05) {
-    children.push(randomSpiral())
-  }
-  spiral.children = children;
+  // var children = [];
+  // if (Math.random() < 0.55) {
+  //   children.push(randomSpiral())
+  // }
+  // spiral.children = children;
   return spiral
 }
 
