@@ -1,7 +1,9 @@
 /* globals queryState */
 
 // We try to restore spiral definition from query string first
-var qs = queryState();
+var qs = queryState({}, {
+  useSearch: true
+});
 var appState = qs.get();
 
 // Spirograph is defined as a collection of nested circles.
