@@ -48,6 +48,13 @@ ctx.lineWidth = window.devicePixelRatio;
 var isPlaying = true;
 
 document.getElementById('btn-randomize').addEventListener('click', randomize);
+document.getElementById('btn-add').addEventListener('click', function(e) {
+  document.getElementById('edit-container').style.display = 'block';
+});
+document.getElementById('btn-addNew').addEventListener('click', addNew);
+document.getElementById('btn-done').addEventListener('click', function(e) {
+  document.getElementById('edit-container').style.display = 'none';
+});
 document.getElementById('btn-clear').addEventListener('click', clearScene);
 scene.addEventListener('click', togglePlaying);
 
@@ -227,9 +234,29 @@ function randomSpiral() {
 
 function clearScene(e) {
   e.preventDefault();
-  spiralDefinition = {};
+  spiralDefinition = {
+    radiusRatio: 1,
+    color: 'white',
+    children: []
+  };
   qs.set('s', JSON.stringify(spiralDefinition));
   clear();
+}
+
+function addNew(e) {
+  var color = document.getElementById('edit-Color').value;
+  var radiusRatio = parseFloat(document.getElementById('edit-radiusRatio').value);
+  var holeRadius = parseFloat(document.getElementById('edit-holeRadius').value);
+  var initialAngle = parseFloat(document.getElementById('edit-initialAngle').value);
+
+  var newChild = {
+    color: color || 'white',
+    radiusRatio: radiusRatio || (Math.round(Math.random() * 42)/42),
+    holeRadius: holeRadius || Math.random() * 0.8+ 0.2,
+    initialAngle: initialAngle || Math.random() * 2 * Math.PI 
+  }
+  spiralDefinition.children.push(newChild);
+  qs.set('s', JSON.stringify(spiralDefinition));
 }
 
 function getFromQuery() {
