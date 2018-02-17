@@ -26,7 +26,7 @@
     text-align: center;
     margin-top: 8px;
   }
-  #btn-randomize {
+  .button-container {
     display: flex;
     height: 48px;
     position: absolute;
@@ -38,6 +38,7 @@
     margin-top: 22px;
   }
   a {
+    flex-grow: 1;
     display: block;
     color: white;
     text-decoration: none;
@@ -97,7 +98,11 @@
   </style>
 </head>
 <body>
-  <a href="#" id='btn-randomize'>Randomize</a>
+  <div class="button-container">
+    <a href="#" id='btn-randomize'>Randomize</a>
+    <a href="#" id='btn-add'>Add Spiral</a>
+    <a href="#" id='btn-clear'>Clear</a>
+  </div>
   <canvas id=scene></canvas>
   <a href="https://github.com/anvaka/circles">source code</a>
   <div class='pause-monitor'>
