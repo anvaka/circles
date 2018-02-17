@@ -48,6 +48,7 @@ ctx.lineWidth = window.devicePixelRatio;
 var isPlaying = true;
 
 document.getElementById('btn-randomize').addEventListener('click', randomize);
+document.getElementById('btn-clear').addEventListener('click', clearScene);
 scene.addEventListener('click', togglePlaying);
 
 clear();
@@ -224,6 +225,13 @@ function randomSpiral() {
   return spiral
 }
 
+function clearScene(e) {
+  e.preventDefault();
+  spiralDefinition = {};
+  qs.set('s', JSON.stringify(spiralDefinition));
+  clear();
+}
+
 function getFromQuery() {
   if (!appState.s) return;
 
@@ -235,3 +243,4 @@ function getFromQuery() {
     // ignore it. Feel free to send me a PR for a better UX.
   }
 }
+
