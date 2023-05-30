@@ -18,7 +18,7 @@ var spiralDefinition = getFromQuery() || {
     radiusRatio: 0.52,
     // where is the hole for a pen relative the radius of this circle
     holeRadius: 0.15,
-    // Wher is the hole located inside this circle
+    // Where is the hole located inside this circle
     initialAngle: 2.1,
   }, {
     // color of the spiral
@@ -27,7 +27,7 @@ var spiralDefinition = getFromQuery() || {
     radiusRatio: 0.15,
     // where is the hole for a pen relative the radius of this circle
     holeRadius: 0.53,
-    // Wher is the hole located inside this circle
+    // Where is the hole located inside this circle
     initialAngle: .1,
   }] 
 }
